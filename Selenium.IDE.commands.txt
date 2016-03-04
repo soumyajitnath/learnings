@@ -1,0 +1,234 @@
+Features of Selenium ide
+-------------------------
+1)how can you execute one line in testpane of SIDE?
+Ans:right click on the row then choose execute this command option
+
+2)how can you insert new command between two lines?
+Ans:right click on the target row-->then choose insert new command option
+
+3)how can you execute the script from particular line to the end of the script?
+Ans:rightclick on the line-->then choose set start/clear start point then click on run option
+=============================================================
+
+Q)How can you identify the webpage elements in selelenium?
+Ans)using locators
+
+what are the locators present in selenium?
+
+id
+name
+class
+link
+css
+xpath
+dom
+
+identifying the element by id
+
+1)id=idvalue
+(or)
+idvalue
+
+2)identifying the element by name
+
+name=namevalue
+ or
+ namevalue
+3)identifying the element by class 
+
+ class=classvalue
+ 
+4)how to identify the link
+ link=linktext
+ 
+ 5)by css
+ by id
+ 
+ css=tagname#idvalue	
+ 
+ by class
+ css=tagname.classvalue
+ 
+ 
+ identifying elements with other attributes
+ 
+ css=tagname[attributename='attributevalue']
+ 
+ identifying the header text
+ 
+ css=headertag
+ 
+ identifying the statictext/links
+ 
+ css=tagname:contains("statictext/linktext")
+ 
+ Handling dynamically changing elements using CSS:
+ 1)contains--*
+ css=tagname[attributename*='partialattributevalue']
+ 
+ 2)starts-with --^
+ css=tagname[attributename^='startattributevalue']
+ 3)ends-with ---$
+ css=tagname[attributename$='endattributevalue']
+ 
+ 4)identifying elements with multiple attributes
+ 
+ css=tagname[attributename1='attributevalue'][attribute2='value']
+=================================================================
+ Xpath:it provides an unique address for finding the web elements
+ 
+ xpaths are two types:
+ 1)absolute xpath(/)
+ 2)relative xpath(//)
+
+ absolute xpath(/):including all the tags from root tag(html) to till the targettag
+
+ ex:/html/head/body/......./targettag
+
+
+ why we shouldnot use absolute xpath for identifying the webelements?
+
+ Ans)if the developer adds/removes any tags in between root tag & target tag, then the element identification will fail.
+ 
+
+
+ 2)relative xpath(//):shortest distance to the target element
+ 
+Syntax: //starttag[@attributename='attributevalue']/tagname1/tagname2/..../targettag
+
+if duplicate tags are present in our navigation from start tag to target tag 
+
+xpath syntax :
+
+//starttag[@attributename='attributevalue']/tagname[index]/tagname/..../targettag
+
+ 
+Note:if your element starts with input,select,button,a and img tags then your start tag will be same tags respectively 
+ //tagname[@attributename='attributevalue']
+ Note:if a tag is alone in the html
+
+Examples:
+
+1) Input tag
+
+For Email Address Input-box on LinkedIn SignIn page,
+
+<input id="session_key-login" type="text" aria-describedby="session_key-login-error" placeholder="Email address or phone number" value="" name="session_key"/>
+
+XPATH ---------------------//input[@id='session_key-login']
+
+
+
+ 
+ How can you identify dynamically changing elements?
+ using xpath functions-contains,starts-with
+ 
+ xpath functions:
+ contains()
+ text()
+ starts-with()
+ ends-with()
+ and
+ not()
+ last()
+ position()=1,2,3....
+ axes xpaths
+     1)following
+	2)preceding
+	3)ancestor
+	4)descendant
+identifying the links/static text using contains&text() function 
+//tagname[contains(text(),'partial/completetext')]
+
+//identifying the link/static text using text()
+//tagname[text()='exacttext']
+
+//identifying elements with attributes using contains function
+
+//tagname[contains(@attributename,'partial/complete attributevalue')]
+
+//tagname[contains(@id,'idvalue')]
+//tagname[contains(@name,'namevalue')]
+//tagname[contains(@class,'classvalue')]
+//tagname[contains(@value,'value')]
+//tagname[contains(@title,'titlevalue')]
+//tagname[contains(@alt,'altvalue')]
+//tagname[contains(@src,'srcvalue')]
+//tagname[contains(@href,'hrefvalue')]
+
+starts-with():if an element start text is constant and end
+ text might be changing
+ 
+identifying the links/static text using starts-with & text()
+//tagname[starts-with(text(),'start text/completetext')]
+
+//identify the elements with attributes using starts-with()
+//tagname[starts-with(@attributename,'start/completeattributevalue')]
+
+//tagname[starts-with(@id,'idvalue')]
+//tagname[starts-with(@name,'namevalue')]
+//tagname[starts-with(@class,'classvalue')]
+//tagname[starts-with(@value,'value')]
+//tagname[starts-with(@title,'titlevalue')]
+//tagname[starts-with(@alt,'altvalue')]
+//tagname[starts-with(@src,'srcvalue')]
+//tagname[starts-with(@href,'hrefvalue')]
+	 
+ends-with:if element end string is constant and start string might be changing then use ends-with
+
+//tagname[ends-with(@attributename,'end/completeattributevalue')]
+
+and:it is used to join two attributes in the xpath
+
+//tagname[@attributename1='attributevalue' and @attributename2='attributevalue']
+
+not or negative xpath:including not function before any 
+attribute is called negative xpath
+
+//tagname[@attributename1='attributevalue' and not(@attributename2='attributevalue')]
+					(or)
+//tagname[not(@attributename1='attributevalue') and @attributename2='attributevalue']
+
+last():
+last element will be identified
+//tagname[@attributename='attributevalue'][last()]
+
+position():identifies the element based on position
+//tagname[@attributename='attributevalue'][position()=1,2,3,4]
+
+axes xpaths:These axes xpaths are helpful for identifying table elements
+
+following
+preceding
+ancestor
+descendant
+following:if you are identifying any element after the base
+ node then use following
+
+//tagname[text()='basenodetext']/following::targettagname
+					(or)
+xpath/following::targettagname
+					
+preceding:if you are identifying any element before the base
+ node then use preceding
+//tagname[text()='basenodetext']/preceding::tagname[position]
+(or)
+xpath/preceding::tagname[position]
+
+Ancestor:if you are identifying any element above the base
+ node then use ancestor
+you have to go diagonally
+//tagname[text()='basenodetext']/ancestor::tagname
+(or)
+xpath/ancestor::tagname
+
+Descendant:if you are identifying any element below the base
+node then use descendant
+
+//tagname[text()='basenodetext']/descendant::tagname
+xpath/descendant::tagname
+
+DOM:
+
+1)ById
+document.getElementById("id of the element")
